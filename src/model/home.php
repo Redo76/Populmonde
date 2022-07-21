@@ -23,6 +23,14 @@ function getContinents(){
     return $continents;
 }
 
+function getContinentByRegionId($id){
+    $db = PDO();
+    $continentDB = $db -> prepare("SELECT r.continent_id FROM t_regions r WHERE r.id_region = :id");
+    $continentDB -> execute(["id" => $id]);
+    $continent = $continentDB -> fetch();
+    return $continent[0];
+}
+
 function getRegions($id){
     $db = PDO();
     $regionsDB = $db -> prepare("SELECT * FROM t_regions r WHERE r.continent_id = :id");
@@ -38,7 +46,6 @@ function continentsData(){
     UNION 
     SELECT 'Monde' as nom, SUM(p.population_pays) as pop, ROUND(AVG(p.taux_natalite_pays) , 2)as nat, ROUND(AVG(p.taux_mortalite_pays),2) as mort, ROUND(AVG(p.esperance_vie_pays),2) as esp, ROUND(AVG(p.taux_mortalite_infantile_pays),2) as mortinf, ROUND(AVG(p.nombre_enfants_par_femme_pays) ,2) as enf, ROUND(AVG(p.taux_croissance_pays) ,2) as croiss, ROUND(AVG(p.population_plus_65_pays),2) as 65p, SUM(p.superficie_km2) as sup 
     FROM t_pays p;");
-    $continentsDataDB -> setFetchMode(PDO::FETCH_ASSOC);
     $continentsDataDB -> execute();
     $continentsData = $continentsDataDB -> fetchAll();
     return $continentsData;

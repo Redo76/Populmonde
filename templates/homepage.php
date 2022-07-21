@@ -7,22 +7,27 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>Population du monde</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/slate/bootstrap.min.css">
 </head>
-<body>
-    <form action="/index.php" method="get" class="m-5" >
-        <select name="continent" onchange="this.form.submit()">
-            <option value="0">Monde</option>
-            <?php foreach ($continents as $continent) : ?>
-                <?php if ($idContinent == $continent['id_continent']) :?>
-                    <option value="<?=$continent['id_continent']?>" selected ><?= $continent['libelle_continent'] ?></option>
-                <?php else :?>
-                    <option value="<?=$continent['id_continent']?>" ><?= $continent['libelle_continent'] ?></option>
-                <?php endif ?>
-            <?php endforeach ?>
-        </select>
-        <?php if (isset($idContinent) && $idContinent != 0) :?>
-
-        <select name="region" onchange="this.form.submit()">
+<body class="bg-white d-flex flex-column align-items-center">
+    <h1 class="mt-5">Population du monde</h1>
+    <div class="d-flex align-items-center bg-light w-50 my-5">
+        <form action="/index.php" method="get" class="m-5" >
+            <select name="continent" onchange="this.form.submit()" class="p-2">
+                <option value="0">Monde</option>
+                <?php foreach ($continents as $continent) : ?>
+                    <?php if ($idContinent == $continent['id_continent'] ) :?>
+                        <option value="<?=$continent['id_continent']?>" selected ><?= $continent['libelle_continent'] ?></option>
+                    <?php else :?>
+                        <option value="<?=$continent['id_continent']?>" ><?= $continent['libelle_continent'] ?></option>
+                    <?php endif ?>
+                <?php endforeach ?>
+            </select>
+        </form>
+        <form action="/index.php" method="get" class="m-5 d-flex">
+            <?php if (isset($idContinent) && $idContinent != 0 && $idContinent != 3) :?>
+    
+            <select name="region" onchange="this.form.submit()"  class="p-2">
             <option value="">--</option>
             <?php foreach ($regions as $region) : ?>
                 <?php if ($idRegion == $region['id_region']) :?>
@@ -31,18 +36,15 @@
                     <option value="<?=$region['id_region']?>" ><?= $region['libelle_region'] ?></option>
                 <?php endif ?>
             <?php endforeach ?>
-        </select>
-
-        <?php endif ?>
-    </form>
+            </select>
     
+            <?php endif ?>
+        </form>  
+    </div>
 
-
-
-
-    <table class="table table-striped">
+    <table class="table table-striped w-75">
         <thead>
-            <tr class="table-secondary">
+            <tr class="table-secondary ">
                 <th scope="col">Pays</th>
                 <th scope="col">Population totale (en milliers)</th>
                 <th scope="col">Taux de natalité</th>
@@ -55,7 +57,7 @@
                 <th scope="col">superficie (en km²)</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="table-light">
             <!-- <?php var_dump($data) ?> -->
             <?php foreach ($data as $key => $dataInfo) : ?>
                 
