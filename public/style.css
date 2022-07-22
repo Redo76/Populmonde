@@ -1,0 +1,15 @@
+body{
+    height: 100vh;
+}
+
+
+@media screen and (min-width: 650px) {
+    .divSelect{
+        justify-content: center;
+        margin: auto;
+    }
+    table{
+        display: block;
+        overflow-x: scroll;
+    }
+}

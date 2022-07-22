@@ -1,7 +1,8 @@
 <?php
 function PDO(){
     try {
-    $db = new PDO("mysql:host=localhost;dbname=id19303054_pays;charset=utf8","id19303054_userpays","Wo]=OL?0HX|gUoL^");
+    // $db = new PDO("mysql:host=localhost;dbname=id19303054_pays;charset=utf8","id19303054_userpays","Wo]=OL?0HX|gUoL^");
+    $db = new PDO("mysql:host=localhost;dbname=pays;charset=utf8","userPays","[wJo-QIpl9AIYd0-");
     return $db;
     }
     catch (\Exception $e) {

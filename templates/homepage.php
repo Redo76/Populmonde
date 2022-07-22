@@ -8,12 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>Population du monde</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/slate/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/style.css">
 </head>
 <body class="bg-white d-flex flex-column align-items-center">
     <h1 class="mt-5">Population du monde</h1>
-    <div class="d-flex align-items-center bg-light w-50 my-5">
+    <div class="divSelect d-flex flex-wrap bg-light  m-5">
         <form action="/index.php" method="get" class="m-5" >
-            <select name="continent" onchange="this.form.submit()" class="p-2">
+            <select name="continent" onchange="this.form.submit()" class="p-2 ">
                 <option value="0">Monde</option>
                 <?php foreach ($continents as $continent) : ?>
                     <?php if ($idContinent == $continent['id_continent'] ) :?>
@@ -41,10 +42,10 @@
             <?php endif ?>
         </form>  
     </div>
-
-    <table class="table table-striped w-75">
+    <div class="table-responsive">
+    <table class="table table-striped ">
         <thead>
-            <tr class="table-secondary ">
+            <tr class="table-secondary tres">
                 <th scope="col">Pays</th>
                 <th scope="col">Population totale (en milliers)</th>
                 <th scope="col">Taux de natalité</th>
@@ -80,5 +81,6 @@
                 <?php endforeach ?>
         </tbody>
     </table>
+    </div>
 </body>
 </html>
